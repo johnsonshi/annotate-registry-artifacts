@@ -1,4 +1,4 @@
-name: Makefile CI
+name: Build
 
 on:
   push:
@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
 
-    - name: Run build cli
-      run: make build-cli
+      - uses: actions/checkout@v3
+
+      - name: Build CLI
+        run: make build-cli
