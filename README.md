@@ -3,7 +3,9 @@
 ![Main Branch Build Workflow Badge](https://github.com/johnsonshi/annotate-registry-artifacts/actions/workflows/build.yml/badge.svg)
 ![Latest Release Workflow Badge](https://github.com/johnsonshi/annotate-registry-artifacts/actions/workflows/release.yml/badge.svg)
 
-Interact with the [OCI annotations](https://github.com/opencontainers/image-spec/blob/main/annotations.md) of an existing registry artifact (such as [container images](https://www.docker.com/resources/what-container/) or [OCI artifacts](https://github.com/opencontainers/artifacts)).
+Interact with the [OCI annotations](https://github.com/opencontainers/image-spec/blob/main/annotations.md) of an existing registry artifact (such as [container images](https://www.docker.com/resources/what-container/) or [OCI artifacts](https://github.com/opencontainers/artifacts)) by attaching an annotations file using [ORAS Reference Types](https://oras.land/cli/6_reference_types/).
+
+_**NOTE:**_ This only works for [registries supporting OCI Artifacts](https://oras.land/implementors/#registries-supporting-oci-artifacts).
 
 ## Install
 
@@ -61,7 +63,8 @@ The container image:
 
 A user runs the following `attach` command to attach OCI annotations.
 
-_**NOTE:**_ [OCI Annotations](https://github.com/opencontainers/image-spec/blob/main/annotations.md) must be string-key string-value pairs separated by a colon and a space (`: `).
+_**NOTE:**_ [OCI Annotations](https://github.com/opencontainers/image-spec/blob/main/annotations.md) must be `string`-key `string`-value pairs separated by a colon and a space (`: `).
+Please read the [rules and conventions for OCI annotations](https://github.com/opencontainers/image-spec/blob/main/annotations.md#rules).
 
 ```bash
 ./bin/annotation attach \
