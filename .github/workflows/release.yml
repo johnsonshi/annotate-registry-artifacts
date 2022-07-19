@@ -32,8 +32,8 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ github.ref }}
-          name: ${{ github.ref }}
+          tag: ${{ env.VERSION }}
+          name: ${{ env.VERSION }}
           generateReleaseNotes: true
           prerelease: ${{ contains(env.VERSION, '-alpha.') || contains(env.VERSION, '-beta.') || contains(env.VERSION, '-rc.') || contains(env.VERSION, '-nightly.') }}
           artifacts: "bin/*"
