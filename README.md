@@ -11,6 +11,7 @@ To install, run the following commands.
 
 ```bash
 curl -LO https://github.com/johnsonshi/annotate-registry-artifacts/releases/download/v0.0.1/annotation
+chmod +x annotation
 sudo mv annotation /usr/local/bin
 ```
 
