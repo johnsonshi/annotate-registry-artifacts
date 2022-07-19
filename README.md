@@ -1,5 +1,8 @@
 # Annotate Registry Artifacts
 
+![Main Branch Build Workflow Badge](https://github.com/johnsonshi/annotate-registry-artifacts/actions/workflows/build.yml/badge.svg)
+![Latest Release Workflow Badge](https://github.com/johnsonshi/annotate-registry-artifacts/actions/workflows/release.yml/badge.svg)
+
 Interact with the [OCI annotations](https://github.com/opencontainers/image-spec/blob/main/annotations.md) of an existing registry artifact (such as [container images](https://www.docker.com/resources/what-container/) or [OCI artifacts](https://github.com/opencontainers/artifacts)).
 
 ## Commands
