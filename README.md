@@ -5,6 +5,15 @@
 
 Interact with the [OCI annotations](https://github.com/opencontainers/image-spec/blob/main/annotations.md) of an existing registry artifact (such as [container images](https://www.docker.com/resources/what-container/) or [OCI artifacts](https://github.com/opencontainers/artifacts)).
 
+## Install
+
+To install, run the following commands.
+
+```bash
+curl -LO https://github.com/johnsonshi/annotate-registry-artifacts/releases/download/v0.0.1/annotation
+sudo mv annotation /usr/local/bin
+```
+
 ## Commands
 
 ### Attach
