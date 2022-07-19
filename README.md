@@ -37,7 +37,7 @@ That is, modifying existing registry artifacts and container images to add the f
 
 ![container-image-manifest-with-oci-annotations](./docs/images/container-image-manifest-with-oci-annotations.png)
 
-#### Attach Command – Architecture
+#### Attach Command – Technical Details
 
 To work around the tamper-proof `digest` of existing artifacts, the `attach` command is used to conceptually add OCI annotations to existing artifacts (including images) by creating a new registry artifact that refers to the existing artifact.
 
@@ -85,6 +85,8 @@ Notice how the `subject.digest` value matches the `$digest` specified in the `at
 This newly-created ORAS Artifact Manifest is said to be "referring to" or "pointing to" the subject artifact referenced by the `subject.digest` in the same repository.
 
 ![oras-artifact-manifest-containing-oci-annotations](./docs/images/oras-artifact-manifest-containing-oci-annotations.png)
+
+#### Attach Command – Relationship Diagram
 
 The following diagram describes the relationship between the existing artifact (the referenced `subject` artifact) and the newly-created ORAS Artifact Manifest.
 
