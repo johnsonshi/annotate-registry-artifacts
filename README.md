@@ -12,10 +12,13 @@ This tool has been tested with [Azure Container Registry](https://azure.microsof
 
 This tool is for you if you are a:
 
-* Registry Owner, Maintainer, or Administrator
-* Registry Artifacts – Container Image Builder, Maintainer, or Publisher
+* Registry Owner/Maintainer/Administrator
+* Registry Artifacts and Container Images:
+  * Image/Artifact Builder
+  * Image/Artifact Maintainer
+  * Image/Artifact Publisher
 
-Registry owners and artifact publishers may wish to add custom [OCI annotations](https://github.com/opencontainers/image-spec/blob/main/annotations.md) existing images in the registry. Common annotation scenarios include:
+Registry owners and artifact maintainers may wish to add custom [OCI annotations](https://github.com/opencontainers/image-spec/blob/main/annotations.md) to existing images within a registry. Common annotation scenarios include:
 
 * Annotation for image end-of-life date (EOL Date), which may or may not be known during image build time.
 * Annotation for image deprecation (marking an image as deprecated).
@@ -31,8 +34,10 @@ Additionally, various build tools for container images currently _do not_ suppor
 This tool:
 
 * creates a new annotation file containing the OCI Annotations you wish to add to an _existing_ registry artifact,
-* pushes and stores the annotation file in the same registry and repository as the existing registry artifact,
+* pushes the annotation file to the same registry and repository as the existing registry artifact,
 * links the annotation file and the existing artifact using [ORAS Artifact References](https://oras.land/cli/6_reference_types/).
+
+This allows users to [query and discover (using ORAS)](https://oras.land/cli/6_reference_types/#discovering-artifact-references) the annotations of existing registry artifacts and container images.
 
 ## Quick Start
 
