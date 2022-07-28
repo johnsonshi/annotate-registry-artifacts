@@ -4,17 +4,15 @@ Copyright © 2022 Johnson Shi <Johnson.Shi@microsoft.com>
 package main
 
 import (
-	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
 	"regexp"
 
 	digest "github.com/opencontainers/go-digest"
-	ocispecv1 "github.com/opencontainers/image-spec/specs-go/v1"
 	artifactspecv1 "github.com/oras-project/artifacts-spec/specs-go/v1"
 	"github.com/spf13/cobra"
+	"oras.land/oras-go/v2"
 	"oras.land/oras-go/v2/registry/remote"
 	"oras.land/oras-go/v2/registry/remote/auth"
 )
@@ -89,31 +87,17 @@ func (opts *attachOpts) run() error {
 		return err
 	}
 
-	referenceManifest := artifactspecv1.Manifest{
-		MediaType:    artifactspecv1.MediaTypeArtifactManifest,
-		ArtifactType: "annotations/json",
-		// Based on https://pkg.go.dev/oras.land/oras-go/v2/registry/remote@v2.0.0-rc.1#example-Repository.Push-ArtifactReferenceManifest
-		// To push a ORAS reference manifest (with a subject artifact),
-		// we must first download the subject artifact manifest from the registry,
-		// obtain the subject artifact manifest's artifact descriptor,
-		// and set the ORAS reference manifest subject field to the subject artifact descriptor.
-		Subject:     subjectArtifactDescriptor,
-		Annotations: annotationsMap,
-	}
-	referenceManifestContent, _ := json.Marshal(referenceManifest)
-	referenceManifestDescriptor := ocispecv1.Descriptor{
-		MediaType: artifactspecv1.MediaTypeArtifactManifest,
-		Digest:    digest.FromBytes(referenceManifestContent),
-		Size:      int64(len(referenceManifestContent)),
+	packOpts := oras.PackArtifactOptions{
+		Subject:             subjectArtifactDescriptor,
+		ManifestAnnotations: annotationsMap,
 	}
 
-	// Push the reference manifest descriptor and content
-	err = repo.Push(ctx, referenceManifestDescriptor, bytes.NewReader(referenceManifestContent))
+	ref, err := oras.PackArtifact(ctx, repo, "annotations/json", nil, packOpts)
 	if err != nil {
 		return err
 	}
 
-	fmt.Println("Push finished")
+	fmt.Printf("Pushed %s\n", string(ref.Digest))
 
 	return nil
 }
